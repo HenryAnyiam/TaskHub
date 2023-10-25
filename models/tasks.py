@@ -1,12 +1,28 @@
 #!/usr/bin/python3
 """module to handle task objects"""
 
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
+from models.users import User
 from models import storage
+from sqlalchemy import Column, String, DateTime, Integer, JSON, ForeignKey
+from sqlalchemy.orm import relationship
+from os import getenv
 
 
-class Task(BaseModel):
+class Task(BaseModel, Base):
     """class handle a new task object"""
+
+    __tablename__ = "tasks"
+    title = Column(String(100), nullable=False)
+    parent = Column(String(50), nullable=False)
+    team = Column(JSON, nullable=False)
+    child_task = Column(JSON, nullable=False)
+    progress = Column(Integer, nullable=False)
+    created_by = Column(String(50), ForeignKey("users.id"), nullable=False)
+    deadline = Column(DateTime, nullable=True)
+
+    if getenv("THB_STORAGE_TYPE") == "db":
+        user = relationship("User", back_populates="tasks")
 
     def __init__(self, *args, **kwargs):
         """task class initialization"""
@@ -17,3 +33,9 @@ class Task(BaseModel):
             self.progress = 0
         if kwargs.get("parent", None) is None:
             self.parent = "None"
+        if kwargs.get("team", None) is None:
+            self.team = []
+
+
+if getenv("THB_STORAGE_TYPE") == "db":
+    User.tasks = relationship("Task", order_by=Task.id, back_populates="user")

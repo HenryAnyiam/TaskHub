@@ -39,3 +39,10 @@ class FileStorage:
                 self.__objects = json.load(my_file)
         except Exception:
             pass
+
+    def delete(self, obj=None):
+        """delete object from storage"""
+        if obj is not None:
+            key = f"{obj.__class__.__name__}.{obj.id}"
+            if key in self.__objects:
+                del self.__objects[key]

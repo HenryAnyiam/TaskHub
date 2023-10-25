@@ -2,9 +2,13 @@
 """models initialization"""
 
 from models.engine.file_storage import FileStorage
+from models.engine.db_storage import DBStorage
+from os import getenv
 
-
-storage = FileStorage()
+if getenv('THB_STORAGE_TYPE') == 'db':
+    storage = DBStorage()
+else:
+    storage = FileStorage()
 storage.reload()
 
 def add_child(parent_id, child_id):
@@ -38,3 +42,23 @@ def update_progress(id):
         parent = task['parent']
         if parent != "None":
             update_progress(parent)
+
+def task_messages(id):
+    """gets all messages for a task"""
+    all_messages = storage.all('Message')
+    messages = []
+    for i in all_messages:
+        if i['receiver'] == id:
+            messages.append(i)
+    messages.sort(key=(lambda i: i['updated_at']))
+    return messages
+
+def user_notifications(id):
+    """gets all notifications for a user"""
+    all_notifications = storage.all('Notification')
+    notifications = []
+    for i in all_notifications:
+        if i['user_id'] == id:
+            notifications.append(i)
+    notifications.sort(key=(lambda i: i['updated_at']))
+    return notifications

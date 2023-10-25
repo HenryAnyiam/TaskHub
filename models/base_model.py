@@ -4,9 +4,18 @@
 import uuid
 from datetime import datetime
 from models import storage
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, String, DateTime
+
+Base = declarative_base()
+
 
 class BaseModel:
     """base class with common attribute for other classes"""
+
+    id = Column(String(60), primary_key=True)
+    created_at = Column(DateTime, nullable=False, default=(datetime.utcnow()))
+    updated_at = Column(DateTime, nullable=False, default=(datetime.utcnow()))
 
     def __init__(self, *args, **kwargs) -> None:
         """Initialization of the base model"""
@@ -43,4 +52,10 @@ class BaseModel:
         new_dict['__class__'] = self.__class__.__name__
         new_dict['updated_at'] = new_dict['updated_at'].isoformat()
         new_dict['created_at'] = new_dict['created_at'].isoformat()
+        if "_sa_instance_state" in new_dict:
+            new_dict.pop("_sa_instance_state")
         return new_dict
+    
+    def delete(self):
+        """deletes current instance"""
+        storage.delete(self)
