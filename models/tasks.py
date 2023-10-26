@@ -3,7 +3,6 @@
 
 from models.base_model import BaseModel, Base
 from models.users import User
-from models import storage
 from sqlalchemy import Column, String, DateTime, Integer, JSON, ForeignKey
 from sqlalchemy.orm import relationship
 from os import getenv

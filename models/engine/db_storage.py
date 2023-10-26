@@ -25,7 +25,7 @@ class DBStorage:
         host = getenv('THB_MYSQL_HOST')
         env = getenv('THB_ENV')
 
-        self.__engine = create_engine(f'mysql+mysqldb:{user}:{pwd}@{host}/{db_name}',
+        self.__engine = create_engine(f'mysql+mysqldb://{user}:{pwd}@{host}/{db_name}',
                                       pool_pre_ping=True)
         
         if env == 'Test':
