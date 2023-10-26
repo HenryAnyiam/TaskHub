@@ -63,25 +63,20 @@ class TaskHubCommand(cmd.Cmd):
         args = line.split(" ")
         kwargs = {}
         length = len(args)
-        i = 0
+        i = 1
+        j = 0
         while i < length:
-            if ('"' in args[i]) and (args[i].count('"') != 2):
-                j = i
-                i += 1
-                index = args[j].find('"')
-                args[j] = args[j][:index] + args[j][(index + 1):]
-                while (i < length) and (args[i].endswith('"') is False):
-                    args[j] += " " + args[i]
-                    args.pop(i)
-                    length -= 1
-                    i += 1
-                if i < length and args[i].endswith('"'):
-                    args[j] += " " + args[i]
-                    args[j] = args[j][:-1]
-                    args.pop(i)
-                    length -= 1
+            if '"' in args[j] and (args[j].count('"') != 2):
+                args[j] += " " + args[i]
+                args.pop(i)
+                length -= 1
             else:
                 i += 1
+                j += 1
+        for i in range(length):
+            if args[i].count('"') == 2:
+                index = args[i].find('"')
+                args[i] = args[i][:index] + args[i][(index + 1): -1]
         if length > 1:
             for i in range(1, length):
                 pair = args[i].partition("=")
@@ -134,24 +129,19 @@ class TaskHubCommand(cmd.Cmd):
             print("** value missing **")
             return
         i = 2
+        j = 1
         while i < length:
-            if ('"' in args[i]) and (args[i].count('"') != 2):
-                j = i
-                i += 1
-                index = args[j].find('"')
-                args[j] = args[j][:index] + args[j][(index + 1):]
-                while (i < length) and (args[i].endswith('"') is False):
-                    args[j] += " " + args[i]
-                    args.pop(i)
-                    length -= 1
-                    i += 1
-                if i < length and args[i].endswith('"'):
-                    args[j] += " " + args[i]
-                    args[j] = args[j][:-1]
-                    args.pop(i)
-                    length -= 1
+            if '"' in args[j] and (args[j].count('"') != 2):
+                args[j] += " " + args[i]
+                args.pop(i)
+                length -= 1
             else:
                 i += 1
+                j += 1
+        for i in range(length):
+            if args[i].count('"') == 2:
+                index = args[i].find('"')
+                args[i] = args[i][:index] + args[i][(index + 1): -1]
         for i in range(2, length):
             pair = args[i].partition("=")
             if len(pair) < 3:
@@ -200,7 +190,7 @@ class TaskHubCommand(cmd.Cmd):
         if len(args) < 2:
             hold = stored_instance.copy()
             for i in hold:
-                if "User" in i:
+                if args[0] in i:
                     del stored_instance[i]
             storage.save()
         else:

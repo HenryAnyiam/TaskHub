@@ -19,7 +19,7 @@ class Message(BaseModel, Base):
 
     if getenv("THB_STORAGE_TYPE") == "db":
         user = relationship("User", back_populates="messages")
-        task = relationship("Task", back_populates="tasks")
+        task = relationship("Task", back_populates="messages")
 
 
     def __init__(self, *args, **kwargs):
