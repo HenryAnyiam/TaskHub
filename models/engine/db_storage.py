@@ -67,6 +67,7 @@ class DBStorage:
         """delete object from current session"""
         if obj:
             self.__session.delete(obj)
+            self.save()
     
     def reload(self):
         """create table and session"""
