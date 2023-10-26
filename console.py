@@ -191,15 +191,13 @@ class TaskHubCommand(cmd.Cmd):
             hold = stored_instance.copy()
             for i in hold:
                 if args[0] in i:
-                    del stored_instance[i]
-            storage.save()
+                    storage.delete(stored_instance[i])
         else:
             instance = stored_instance.get(f"{args[0]}.{args[1]}")
             if instance is None:
                 print("** no instance found **")
                 return
-            del stored_instance[f"{args[0]}.{args[1]}"]
-            storage.save()
+            storage.delete(instance)
 
     def help_destroy(self):
         """help documentation for destroy command"""

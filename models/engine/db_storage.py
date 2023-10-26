@@ -37,15 +37,21 @@ class DBStorage:
                    'Notifications': Notification, 'Task': Task}
         objects = {}
         obj = []
+        obj_name = []
+        length = 0
         if cls and (cls in classes):
             obj = [classes[cls]]
+            obj_name = [cls]
+            length = 1
         else:
             for i in classes:
                 obj.append(classes[i])
-        for i in obj:
-            saved = self.__session.query(i)
+                obj_name.append(i)
+                length += 1
+        for i in range(length):
+            saved = self.__session.query(obj[i])
             for j in saved:
-                key = f'{type(i).__name__}.{j.id}'
+                key = f'{obj_name[i]}.{j.id}'
                 objects[key] = j
         return objects
     
