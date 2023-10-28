@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../images/background-min.png");
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-size: 40%;
+  }
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header_logo {
+    height: 50px;
+    width: 50px;
+    margin-right: 5px;
+    animation: shake 5s ease infinite;
+}
+
+@keyframes shake {
+    35% {
+        transform: rotate(-15deg);
+    }
+    70% {
+        transform: rotate(15deg);
+    }
+    98% {
+        transform: rotate(-5deg);
+    }
+    99% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(5deg);
+    }
+}
+
+.signup-container .logo .header_name_1 {
+    font-size: 30px;
+    font-family:'Times New Roman', Times, serif;
+}
+
+.signup-container .logo .header_name_2 {
+    font-size: 30px;
+    font-family: cursive;
+    color: #00a9ff;
+}
+
+.signup-container {
+    background-color: #ffffff;
+    border: 1px solid #00a9ff;
+    border-radius: 10px;
+    box-shadow: 2px 5px 2px #ccc;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    width: 30vw;
+    height: 80vh;
+  }
+
+  .signup-container p {
+    font-family:'Times New Roman', Times, serif;
+    font-size: 20px;
+    margin: 30px;
+  }
+  .signup-container h2 {
+    margin: 0;
+    color: #333;
+  }
+  .input-group {
+    margin-top: 20px;
+  }
+  .input-group input {
+    width: 80%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: inset 2px 2px 5px #ccc;
+  }
+  .input-group label {
+    text-align: left;
+    display: block;
+    margin: 10px 0;
+    color: #888;
+  }
+
+.submit {
+    margin-top: 20px;
+}
+ .submit .btn {
+    width: 80%;
+    margin: 5px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    box-shadow: 2px 2px 5px #ccc;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+a:link { color: #484848; 
+	text-decoration: none;
+}
+a:visited {
+	color: #000;
+}
+a:hover { color: #00a9ff; }
