@@ -1,0 +1,48 @@
+{% extends "nav_layout.html" %}
+
+{% block placeholder %}
+
+    <div class="team-body">
+        {% if teams|length > 0 %}
+            {% for team in teams%}
+                <div class="team">
+                    <div class="name">
+                        <p>{{ team.name }}</p>
+                    </div>
+                    <p class="heading">Members</p>
+                    <table class="members">
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                    {% for member in team.members %}
+                        <tr>
+                            <td>{{ member.name }}</td>
+                            <td>{{ member.email }}</td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+                    <p class="heading">Tasks</p>
+                    <table class="tasks">
+                        <tr>
+                            <th>Title</th>
+                            <th>Progress</th>
+                        </tr>
+                    {% for task in team.tasks %}
+                        <tr>
+                            <td>{{ task.title }}</td>
+                            <td>{{ task.progress }}</td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+                </div>
+            {% endfor %}
+        {% else %}
+        <div class="empty">
+            <p>You are currently not part of any teams</p>
+            <a>Go To The Create Team Page To Create A New Team </a>
+        </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

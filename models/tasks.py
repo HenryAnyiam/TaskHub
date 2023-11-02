@@ -14,7 +14,7 @@ class Task(BaseModel, Base):
     __tablename__ = "tasks"
     title = Column(String(100), nullable=False)
     parent = Column(String(50), nullable=False)
-    team = Column(JSON, nullable=False)
+    team = Column(String(50), nullable=True)
     child_task = Column(JSON, nullable=False)
     progress = Column(Integer, nullable=False)
     created_by = Column(String(50), ForeignKey("users.id"), nullable=False)
@@ -32,8 +32,6 @@ class Task(BaseModel, Base):
             self.progress = 0
         if kwargs.get("parent", None) is None:
             self.parent = "None"
-        if kwargs.get("team", None) is None:
-            self.team = []
 
 
 if getenv("THB_STORAGE_TYPE") == "db":

@@ -9,6 +9,9 @@ from models.messages import Message
 from models.notifications import Notification
 from models.tasks import Task
 from models.users import User
+from models.teams import Team
+from sqlalchemy.exc import IntegrityError
+from os import getenv
 
 
 class TaskHubCommand(cmd.Cmd):
@@ -16,7 +19,7 @@ class TaskHubCommand(cmd.Cmd):
     prompt = "(TaskHub) " if sys.__stdin__.isatty() else ""
     __classes = {"BaseModel": BaseModel, "Message": Message,
                "Notification": Notification, "Task": Task,
-               "User": User}
+               "User": User, "Team": Team}
 
     def precmd(self, line: str) -> str:
         """checks line for basic syntax"""
@@ -87,8 +90,16 @@ class TaskHubCommand(cmd.Cmd):
             new_instance = self.__classes[args[0]](**kwargs)
         else:
             new_instance = self.__classes[args[0]]()
-        new_instance.save()
-        print(new_instance.id)
+        try:
+            new_instance.save()
+        except IntegrityError as e:
+            """if "Duplicate entry" in e and "users.email" in e:
+                print("Email already exists")"""
+            error = str(e)
+            if ("Duplicate entry" in error) and ("users.email" in error):
+                print("email already exists")
+        else:
+            print(new_instance.id)
 
     def help_create(self):
         """help documentation for create command"""
@@ -144,10 +155,16 @@ class TaskHubCommand(cmd.Cmd):
                 args[i] = args[i][:index] + args[i][(index + 1): -1]
         for i in range(2, length):
             pair = args[i].partition("=")
-            if len(pair) < 3:
-                instance[pair[0]] = ""
+            if getenv('THB_STORAGE_TYPE') == 'fs':
+                if len(pair) < 3:
+                    instance[pair[0]] = ""
+                else:
+                    instance[pair[0]] = pair[2]
             else:
-                instance[pair[0]] = pair[2]
+                if len(pair) < 3:
+                    setattr(instance, pair[0], "")
+                else:
+                    setattr(instance, pair[0], pair[2])
         storage.save()
 
     def help_update(self):

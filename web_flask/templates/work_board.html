@@ -1,0 +1,86 @@
+{% extends "nav_layout.html" %}
+
+{% block placeholder %}
+
+    {% if main_task == "None" %}
+
+    <form action="/work_board" method="get">
+        <div class="input">
+            <div class="input-group">
+                <input type="text" id="text" name="task-id" placeholder="Please input your task id to view task" required>
+            </div> 
+            <div class="submit">
+                <input type="submit" class="btn" value="Open Task">
+            </div>  
+        </div>
+    </form>
+
+    {% else %}
+    <div class="board">
+        <div class="tasks">
+            <div class="parent">
+                <p>Title: {{ main_task.title }}</p>
+                <p>Being Done By: {{main_task.team }}</p>
+                <p>Deadline: {{ main_task.deadline }}</p>
+                <p>Progress: {{ main_task.progress }}%</p>
+                <div class="buttons">
+                    <form action="/new_task" method="post">
+                        <div class="input">
+                            <div class="input-group">
+                                <input type="hidden" id="text" name="parent_id" value="{{ main_task.id }}">
+                            </div> 
+                            <div class="submit">
+                                <input type="submit" class="btn" value="Create A Child Task">
+                            </div>  
+                        </div>
+                    </form>
+                    <form action="/work_board" method="post">
+                        <div class="input">
+                            <div class="input-group">
+                                <input type="hidden" id="text" name="task_id" value="{{ main_task.id }}">
+                            </div> 
+                            <div class="submit">
+                                <input type="submit" class="btn" value="Done">
+                            </div>  
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% if child_tasks != "None" %}
+                <table class="child_tasks">
+                    <tr>
+                        <th>Title</th>
+                        <th>To Be Done By</th>
+                        <th>Deadline</th>
+                        <th>Progress</th>
+                        <th>Done</th>
+                    </tr>
+                    {% for i in child_tasks %}
+                    <tr>
+                        <td>{{ i.title }}</td>
+                        <td>{{ i.team.name }}</td>
+                        <td>{{ i.deadline }}</td>
+                        <td>{{ i.progress }}</td>
+                        <td>
+                            <div>
+                                <form action="/work_board" method="post">
+                                    <div class="input">
+                                        <div class="input-group">
+                                            <input type="hidden" id="text" name="c_task_id" value="{{ i.id }}">
+                                        </div> 
+                                        <div class="submit">
+                                            <input type="submit" class="btn" value="Done">
+                                        </div>  
+                                    </div>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+{% endblock %}

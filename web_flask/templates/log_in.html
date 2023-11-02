@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta name="viewport" content="initial-scale=1, width=device-width">
+        <title>Log In</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16.png">
+        <link rel="manifest" href="../static/images/site.webmanifest">
+        <link rel="stylesheet" href="../static/styles/login_body.css">
+    </head>
+    <body>
+        <div class="signup-container">
+            <div class="logo">
+                <div class="header_logo">
+                    <img src="../static/images/logo.svg" alt=""/>
+                </div>
+                <h2 class="header_name_1">Task</h2>
+                <h2 class="header_name_2">Hub</h2>
+            </div>
+            <p>Log in to continue</p>
+            <form action="/log_in" method="post">
+                <div class="input-group">
+                  <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                  <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="submit">
+                  <input type="submit" class="btn" value="Continue">
+                </div>
+              </form>
+              <div class="not_login">
+                <a href="/reset">Can't log in?</a>
+                <h2>.</h2>
+                <a class="signup" href="/sign_up">Create an Account</a>
+              </div>
+        </div>
+    </body>
+</html>

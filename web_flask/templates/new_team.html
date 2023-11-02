@@ -1,0 +1,37 @@
+{% extends "nav_layout.html" %}
+
+{% block placeholder %}
+    <div>
+        {% if team == "None" %}
+        <form action="/new_team" method="post">
+            <div class="input">
+                <div class="input-group">
+                    <input type="text" id="email" name="title" placeholder="Please input new team name" required>
+                </div> 
+                <div class="submit">
+                    <input type="submit" class="btn" value="Create Team">
+                </div>  
+            </div>
+        </form>
+        {% else %}
+        <div class="input">
+            <p>Invite new members to join your team</p>
+            <form action="/new_team" method="post">
+                <div class="input-group">
+                    <input type="email" id="email" name="email" placeholder="Please input users email address" required>
+                </div>
+                <input type="hidden" name="task_id" value="{{ team.id }}">
+                <div class="submit">
+                    <input type="submit" class="btn" value="Invite">
+                </div>   
+            </form>
+        </div>
+            <form action="/new_team" method="post">
+                <input type="hidden" name="done" value="True">
+                <div class="submit">
+                    <input type="submit" class="btn" value="Done">
+                </div>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

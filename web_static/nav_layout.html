@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>TaskHub</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+        <link rel="manifest" href="images/site.webmanifest">
+        <link rel="stylesheet" href="styles/common.css">
+        <link rel="stylesheet" href="styles/nav_header.css">
+        <link rel="stylesheet" href="styles/nav.css">
+    </head>
+    <body>
+        <header>
+            <div class="header-box">
+                <div class="logo">
+                    <div class="header_logo">
+                        <img src="./images/logo.svg" alt=""/>
+                    </div>
+                    <h2 class="header_name_1">Task</h2>
+                    <h2 class="header_name_2">Hub</h2>
+                </div>
+                <div class="header_links">
+                    <a>
+                        <div class="notifications">
+                            <img src="./images/notifications.svg" alt="bell">
+                        </div>
+                    </a>
+                    <a>Log out</a>
+                </div>
+            </div>
+        </header>
+        <div>
+            <nav class="nav">
+                <div class="navigation">
+                    <div class="owner">
+                        <p>Welcome {{ name }}</p>
+                    </div>
+                    <a>
+                        <div>
+                            <img src="./images/dashboard.svg" alt="dashboard">
+                            <p>View Board</p>
+                        </div>
+                    </a>
+                    <a>
+                        <div>
+                            <img src="./images/add.svg" alt="new_task">
+                            <p>New Task</p>
+                        </div>
+                    </a>
+                    <a>
+                        <div>
+                            <img src="./images/new_group.svg" alt="new_group">
+                            <p>New Team</p>
+                        </div>
+                    </a>
+                    <a>
+                        <div>
+                            <img src="./images/table.svg" alt="table">
+                            <p>View Tasks</p>
+                        </div>
+                    </a>
+                    <a>
+                        <div>
+                            <img src="./images/groups.svg" alt="groups">
+                            <p>View Teams</p>
+                        </div>
+                    </a>
+                    <a>
+                        <div>
+                            <img src="./images/calendar.svg" alt="calendar">
+                            <p>Calendar</p>
+                        </div>
+                    </a>
+                </div>
+            </nav>
+            <div class="ViewBoard">
+            </div>
+        </div>
+    </body>
+</html>

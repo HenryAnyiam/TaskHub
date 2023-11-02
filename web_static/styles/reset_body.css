@@ -62,7 +62,7 @@ body {
     padding: 20px;
     margin-top: 50px;
     width: 30vw;
-    height: 50vh;
+    height: auto;
   }
 
   .signup-container p {

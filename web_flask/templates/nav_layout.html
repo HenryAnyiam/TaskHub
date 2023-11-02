@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <title>TaskHub</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16.png">
+        <link rel="manifest" href="../static/images/site.webmanifest">
+        <link rel="stylesheet" href="../static/styles/common.css">
+        <link rel="stylesheet" href="../static/styles/nav_header.css">
+        <link rel="stylesheet" href="../static/styles/nav.css">
+        <link rel="stylesheet" href="../static/styles/{{ file }}.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="header-box">
+                <div class="logo">
+                    <div class="header_logo">
+                        <img src="../static/images/logo.svg" alt=""/>
+                    </div>
+                    <h2 class="header_name_1">Task</h2>
+                    <h2 class="header_name_2">Hub</h2>
+                </div>
+                <div class="header_links">
+                    <a>
+                        <div class="notifications">
+                            <img src="../static/images/notifications.svg" alt="bell">
+                        </div>
+                    </a>
+                    <a href="/logout">Log out</a>
+                </div>
+            </div>
+        </header>
+        <div class="main_body">
+            <nav class="nav">
+                <div class="navigation">
+                    <div class="owner">
+                        <p>Welcome {{ name }}</p>
+                    </div>
+                    <a href="/work_board">
+                        <div class="view-board">
+                            <img src="../static/images/dashboard.svg" alt="dashboard">
+                            <p>View Board</p>
+                        </div>
+                    </a>
+                    <a href="/new_task">
+                        <div class="new-task">
+                            <img src="../static/images/add.svg" alt="new_task">
+                            <p>New Task</p>
+                        </div>
+                    </a>
+                    <a href="/new_team">
+                        <div class="new-team">
+                            <img src="../static/images/new_group.svg" alt="new_group">
+                            <p>New Team</p>
+                        </div>
+                    </a>
+                    <a href="/view_task">
+                        <div class="view-task">
+                            <img src="../static/images/table.svg" alt="table">
+                            <p>View Tasks</p>
+                        </div>
+                    </a>
+                    <a href="/view_team">
+                        <div class="view-team">
+                            <img src="../static/images/groups.svg" alt="groups">
+                            <p>View Teams</p>
+                        </div>
+                    </a>
+                    <a>
+                        <div class="calendar">
+                            <img src="../static/images/calendar.svg" alt="calendar">
+                            <p>Calendar</p>
+                        </div>
+                    </a>
+                </div>
+            </nav>
+            <div class="ViewBoard">
+                {% block placeholder %} {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

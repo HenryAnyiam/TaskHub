@@ -1,0 +1,16 @@
+body {
+	margin:0px;
+	padding:0px;
+
+	color: #484848;
+	font-size: 14px;
+	font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+a:link { color: #484848; 
+	text-decoration: none;
+}
+a:visited {
+	color: #000;
+}
+a:hover { color: #00a9ff; }

@@ -1,0 +1,37 @@
+{% extends "nav_layout.html" %}
+
+{% block placeholder %}
+
+    <table>
+        <tr>
+            <th>Task Title</th>
+            <th>Working With</th>
+            <th>Deadline</th>
+            <th>Progress</th>
+            <th>Task ID</th>
+            <th>Work Board</th>
+        </tr>
+        {% if tasks|length > 0 %}
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.team_name }}</td>
+                    <td>{{ task.deadline }}</td>
+                    <td>{{ task.progress }}%</td>
+                    <td>{{ task.id }}</td>
+                    <td>
+                        <a>Open in Work Board</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+        <tr>
+            <th colspan="6" class="empty">You currently have no Tasks</th>
+        </tr>
+            <th colspan="6" class="empty-table">
+                <a href="/new_task">Go To The New Task Page To Create A New Task</a>
+            </th>
+        {% endif %}
+    </table>
+
+{% endblock %}

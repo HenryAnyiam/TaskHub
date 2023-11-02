@@ -1,0 +1,36 @@
+.view-task {
+    background-color: #00a9ff;
+}
+
+table {
+    margin-top: 5%;
+    margin-left: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 2px 2px #ccc;
+    margin-right: 20px;
+}
+th {
+    border-bottom: 1px solid #CCCCCC;
+    padding-left: 10px;
+    padding-right: 8vw;
+    font-size: 15px;
+    font-family:'Times New Roman', Times, serif;
+}
+
+td {
+    padding: 10px;
+}
+
+.empty {
+    padding-top: 5%;
+    font-size: 20px;
+    border-bottom: 0px;
+    font-weight: lighter;
+}
+.empty-table {
+    padding-top: 2%;
+    padding-bottom: 5%;
+    font-size: 20px;
+    border-bottom: 0px;
+    font-weight: lighter;
+}

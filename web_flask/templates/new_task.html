@@ -1,0 +1,46 @@
+{% extends "nav_layout.html" %}
+
+{% block placeholder %}
+    <h2 class="heading">Create A New Task</h2>
+
+    <form action="/new_task" method="post">
+        <div class="input-group">
+            <input type="text" id="title" name="title" placeholder="Enter Task Title" required>
+        </div>
+        
+        <div class="input-group">
+            {% if members == "None" %}
+                <label for="team">Select a team to work with (select 'Myself' to fly solo):</label>
+                <select id="team" name="team" required> 
+                <option disabled selected>Teams</option>
+                {% for team in teams %}
+                    <option value="{{ team.id }}">{{ team.name }}</option>
+                {% endfor %}
+                <option disabled>To create more teams, visit the New Team page</option>
+            </select>
+            {% else %}
+            <label for="team">Task will be carried out by - </label>
+            <select id="team" name="team" disabled>
+                <option value="{{ members.id }}" selected>{{ members.name }}</option>
+            </select>
+            {% endif %}
+        </div>
+        
+        <div class="input-group">
+            <label for="deadline-date">Pick a deadline date and time:</label>
+            <input type="date" id="deadline-date" name="deadline-date" min="{{ date }}">
+            <input type="time" id="deadline-time" name="deadline-time">
+        </div>
+        {% if parent_id != "None" %}
+            <div class="input-group">
+                <label for="parent-task">ID to the parent task - </label>
+                <input type="text" id="parent-task" name="parent-task" value="{{ parent_id }}" readonly>
+            </div>
+            
+        {% endif %}
+        <div class="submit">
+            <input type="submit" class="btn" value="Create Task">
+        </div>
+    </form>
+
+{% endblock %}

@@ -59,3 +59,7 @@ class BaseModel:
     def delete(self):
         """deletes current instance"""
         models.storage.delete(self)
+
+    def get(self, value):
+        """implements dictionary.get"""
+        return self.__dict__.get(value)

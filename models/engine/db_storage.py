@@ -9,6 +9,7 @@ from models.messages import Message
 from models.users import User
 from models.notifications import Notification
 from models.tasks import Task
+from models.teams import Team
 
 
 class DBStorage:
@@ -25,7 +26,7 @@ class DBStorage:
         host = getenv('THB_MYSQL_HOST')
         env = getenv('THB_ENV')
 
-        self.__engine = create_engine(f'mysql+mysqldb://{user}:{pwd}@{host}/{db_name}',
+        self.__engine = create_engine(f'mysql+pymysql://{user}:{pwd}@{host}/{db_name}',
                                       pool_pre_ping=True)
         
         if env == 'Test':
@@ -34,7 +35,8 @@ class DBStorage:
     def all(self, cls=None):
         """return all object stored"""
         classes = {'Message' : Message, 'User': User,
-                   'Notifications': Notification, 'Task': Task}
+                   'Notifications': Notification, 'Task': Task,
+                   'Team': Team}
         objects = {}
         obj = []
         obj_name = []
@@ -75,3 +77,7 @@ class DBStorage:
         session = sessionmaker(bind=self.__engine, expire_on_commit=False)
         scope = scoped_session(session)
         self.__session = scope()
+
+    def clear(self):
+        """drop all tables"""
+        Base.metadata.drop_all(self.__engine)

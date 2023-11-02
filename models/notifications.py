@@ -14,7 +14,7 @@ class Notification(BaseModel, Base):
     __tablename__ = "notifications"
     title = Column(String(50), nullable=False)
     type = Column(String(50), nullable=False)
-    check = Column(Boolean, nullable=False)
+    check = Column(String(50), nullable=False)
     user_id = Column(String(50), ForeignKey("users.id"), nullable=False)
 
     if getenv("THB_STORAGE_TYPE") == "db":
