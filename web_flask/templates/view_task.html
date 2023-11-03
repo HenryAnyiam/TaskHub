@@ -20,7 +20,7 @@
                     <td>{{ task.progress }}%</td>
                     <td>{{ task.id }}</td>
                     <td>
-                        <a>Open in Work Board</a>
+                        <a href="/work_board?task-id={{ task.id }}">Open in Work Board</a>
                     </td>
                 </tr>
             {% endfor %}

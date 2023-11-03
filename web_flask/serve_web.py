@@ -155,8 +155,9 @@ def view_tasks():
                 tasks.append(all[i])
             else:
                 team = all[i].get('team')
-                team = all.get(f'Task.{team}')
+                team = all.get(f'Team.{team}')
                 if team != None:
+                    
                     if user_id in team.members:
                         tasks.append(all[i])
     length = len(tasks)
@@ -241,6 +242,15 @@ def work_board():
     main_task = 'None'
     child_tasks = 'None'
     messages = 'None'
+    new_message = request.form.get('message')
+    if new_message:
+        taskId = request.form.get('main_task')
+        team = request.form.get('team')
+        dic = {'text': new_message,
+               'sender': current_user.id,
+               'receiver': team}
+        new_message = Message(**dic)
+        new_message.save()
     p_task = request.form.get('task_id')
     if p_task:
         taskId = p_task

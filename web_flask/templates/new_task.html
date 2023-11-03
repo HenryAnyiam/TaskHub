@@ -20,7 +20,7 @@
             </select>
             {% else %}
             <label for="team">Task will be carried out by - </label>
-            <select id="team" name="team" disabled>
+            <select id="team" name="team">
                 <option value="{{ members.id }}" selected>{{ members.name }}</option>
             </select>
             {% endif %}

@@ -5,8 +5,8 @@
     {% if main_task == "None" %}
 
     <form action="/work_board" method="get">
-        <div class="input">
-            <div class="input-group">
+        <div class="search">
+            <div class="search-group">
                 <input type="text" id="text" name="task-id" placeholder="Please input your task id to view task" required>
             </div> 
             <div class="submit">
@@ -20,12 +20,12 @@
         <div class="tasks">
             <div class="parent">
                 <p>Title: {{ main_task.title }}</p>
-                <p>Being Done By: {{main_task.team }}</p>
+                <p>Being Done By: {{main_task.team.name }}</p>
                 <p>Deadline: {{ main_task.deadline }}</p>
                 <p>Progress: {{ main_task.progress }}%</p>
                 <div class="buttons">
                     <form action="/new_task" method="post">
-                        <div class="input">
+                        <div class="btns">
                             <div class="input-group">
                                 <input type="hidden" id="text" name="parent_id" value="{{ main_task.id }}">
                             </div> 
@@ -35,7 +35,7 @@
                         </div>
                     </form>
                     <form action="/work_board" method="post">
-                        <div class="input">
+                        <div class="btns">
                             <div class="input-group">
                                 <input type="hidden" id="text" name="task_id" value="{{ main_task.id }}">
                             </div> 
@@ -47,6 +47,7 @@
                 </div>
             </div>
             {% if child_tasks != "None" %}
+            <p class="heading">Tasks to complete '{{ main_task.title }}'</p>
                 <table class="child_tasks">
                     <tr>
                         <th>Title</th>
@@ -64,7 +65,7 @@
                         <td>
                             <div>
                                 <form action="/work_board" method="post">
-                                    <div class="input">
+                                    <div class="btns">
                                         <div class="input-group">
                                             <input type="hidden" id="text" name="c_task_id" value="{{ i.id }}">
                                         </div> 
@@ -80,6 +81,29 @@
                 </table>
             {% endif %}
         </div>
+        {% if messages != "None" %}
+            <div class="messages">
+                <h2>Messages</h2>
+                {% for message in messages%}
+                    <p>{{ message.sender.name }}</p>
+                    <p>{{ message.text }}</p>
+                {% endfor %}
+                <div class="send">
+                    <form action="/work_board" method="post">
+                        <div class="send-btns">
+                            <div class="input-group">
+                                <input type="text" id="text" name="message" placeholder="Input text">
+                            </div> 
+                            <input type="hidden" id="text" name="main_task" value="{{ main_task.id }}">
+                            <input type="hidden" id="text" name="team" value="{{ main_task.team.id }}">
+                            <div class="submit">
+                                <input type="submit" class="btn" value="send">
+                            </div>  
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
     </div>
     {% endif %}
 
