@@ -24,20 +24,39 @@
                     <h2 class="header_name_2">Hub</h2>
                 </div>
                 <div class="header_links">
-                    <a>
-                        <div class="notifications">
-                            <img src="../static/images/notifications.svg" alt="bell">
+                    <div class="notify">
+                        <a href="#" class="show-notification">
+                            <div class="notifications">
+                                <img src="../static/images/notifications.svg" alt="bell">
+                            </div>
+                        </a>
+                        <div class="notifications-box">
+                            {% for notification in notifications%}
+                                <div class="notification">
+                                    <p class="type">{{ notification.type }}</p>
+                                    <p class="title">{{ notification.title }}</p>
+                                </div>
+                            {% endfor %}
+                            {% if notifications|length == 0 %}
+                                <div class="notification">
+                                    <p class="type">You currently have no Notifications</p>
+                                </div>
+                            {% endif %}
                         </div>
-                    </a>
-                    <a href="/logout">Log out</a>
+                    </div>
+
+                    <a href="/logout">Log-out</a>
+                    <a href="/">Home</a>
                 </div>
             </div>
+            
         </header>
+        
         <div class="main_body">
             <nav class="nav">
                 <div class="navigation">
                     <div class="owner">
-                        <p>Welcome {{ name }}</p>
+                        <p>Welcome, {{ name }}</p>
                     </div>
                     <a href="/work_board">
                         <div class="view-board">
@@ -81,5 +100,17 @@
                 {% block placeholder %} {% endblock %}
             </div>
         </div>
+        <script>
+            let anchor = document.querySelector(".show-notification");
+            let div = document.querySelector(".notifications-box");
+        
+            anchor.addEventListener("click", function() {
+                if (div.style.display === "none") {
+                    div.style.display = "block";
+                } else {
+                    div.style.display = "none";
+                }
+            });
+        </script>
     </body>
 </html>

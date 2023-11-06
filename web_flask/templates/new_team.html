@@ -20,7 +20,10 @@
                 <div class="input-group">
                     <input type="email" id="email" name="email" placeholder="Please input users email address" required>
                 </div>
-                <input type="hidden" name="task_id" value="{{ team.id }}">
+                {% if error != "None" %}
+                    <p class="error">{{ error }}</p>
+                {% endif %}
+                <input type="hidden" name="team_id" value="{{ team.id }}">
                 <div class="submit">
                     <input type="submit" class="btn" value="Invite">
                 </div>   

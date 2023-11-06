@@ -11,6 +11,7 @@
         <link rel="stylesheet" type="text/css" href="../static/styles/header.css">
         <link rel="stylesheet" type="text/css" href="../static/styles/main_body.css">
         <link rel="stylesheet" type="text/css" href="../static/styles/footer.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     </head>
     <body>
         <header>
@@ -24,11 +25,35 @@
                     <h2 class="header_name_1">Task</h2>
                     <h2 class="header_name_2">Hub</h2>
                 </div>
-     
                 <div class="header_links">
-                    <a>Features</a>
+                    <div class="header_link">
+                        <div class="features">
+                            <div>
+                                <h2>Manage Tasks</h2>
+                                <p>With <em>TaskHub</em>, you have the ultimate tool for piecing tasks together.
+                                Create, track, manage, and conquer!"</p>
+                            </div>
+                            <div>
+                                <h2>Collaborate</h2>
+                                <p>With <em>TaskHub</em>, create teams to work with and conquer projects together</p>
+                            </div>
+                            <div>
+                                <h2>Communicate</h2>
+                                <p>With <em>TaskHub</em>, you communicate and discuss with your team members 
+                                and hasten productivity</p>
+                            </div>
+                        </div>
+                        <a href="javascript:void(0)" class="display-features">Features</a>
+                    </div>
+                    <div class="header_link">
+                        <a href="/view_task">My Account</a>
+                    </div>
+                    <div class="header_link">
                     <a type="text/html" href="/log_in">Log in</a>
-                    <a href="/sign_up">Sign up - it's free</a>
+                    </div>
+                    <div class="header_link">
+                        <a href="/sign_up">Sign up - it's free</a>
+                    </div>
                 </div>
 
             </div>
@@ -46,32 +71,57 @@
             </div>
         </div>
         <div id="Features">
-            <div>
-                <img src="../static/images/checklist.svg" alt="checklist"/>
-                <h2>Manage Tasks</h2>
-                <p>With <em>TaskHub</em>, you have the ultimate tool for piecing tasks together.
-                Create, track, manage, and conquer!"</p>
+            <div class="texts">
+                <div class="fly-solo">
+                </div>
+                <div>
+                    <img src="../static/images/checklist.svg" alt="checklist"/>
+                    <h2>Manage Tasks</h2>
+                    <p>Empower yourself with <em>TaskHub</em>, the ultimate tool for
+                    seamlessly assembling tasks. Conquer, organize, track, and create success!</p>
+                </div>
+                <div class="fly-solo1">
+                </div>
             </div>
-            <div>
-                <img src="../static/images/groups.svg" alt="group"/>
-                <h2>Collaborate</h2>
-                <p>With <em>TaskHub</em>, create teams to work with and conquer projects together</p>
+            <div class="texts">
+                <div class="groups">
+                </div>
+                <div>
+                    <img src="../static/images/groups1.svg" alt="group"/>
+                    <h2>Collaborate</h2>
+                    <p>Utilize <em>TaskHub</em> to form collaborative teams
+                    and triumph over projects collectively.</p>
+                </div>
+                <div class="groups1">
+                </div>
             </div>
-            <div>
-                <img src="../static/images/chat.svg" alt="chat"/>
-                <h2>Team communication</h2>
-                <p>With <em>TaskHub</em>, you communicate and discuss with your team members 
-                and hasten productivity</p>
+            <div class="texts">
+                <div class="chat-image">
+                </div>
+                <div>
+                    <img src="../static/images/chat.svg" alt="chat"/>
+                    <h2>Team communication</h2>
+                    <p>Leverage TaskHub to engage in seamless communication and
+                    productive discussions with your team, accelerating overall productivity.</p>
+                </div>
+                <div class="send-message">
+                </div>
             </div>
-            <div>
-                <img src="../static/images/folder.svg" alt="folder"/>
-                <h2>Manage Projects</h2>
-                <p>With <em>TaskHub</em>, As a project manager, you create teams, 
-                assign tasks to members and view progress. This way, tasks are always in line, 
-                deadlines are kept on track and your team is right on cue</p>
+            <div class="texts">
+                <div class="manager"></div>
+                <div>
+                    <img src="../static/images/folder.svg" alt="folder"/>
+                    <h2>Manage Projects</h2>
+                    <p>As a project manager with TaskHub, you orchestrate teams, delegate tasks to members,
+                    and gain real-time insights into progress. Keep tasks aligned, deadlines on point,
+                    and your team in perfect synchronization.</p>
+                </div>
+                <div class="t-manage"></div>
             </div>
         </div>
-        <a class="demo">Want to know more... Watch demo video here</a>
+        <a class="reminder">Want to know more... Watch demo video here</a>
+        <a href="/sign_up" class="reminder">Go ahead and give it a try... Sign up now, its free</a>
+        <a href="/log_in" class="reminder">Already have an account? Log in</a>
         <footer>
             <div class="footer-box">
 
@@ -87,15 +137,28 @@
                 <div class="info">
                     <p>Check out the developer behind <em>TaskHub</em></p>
                     <div>
-                        <a href="https://www.github.com/HenryAnyiam" target="_blank">
+                        <a href="https://www.github.com/HenryAnyiam" target="_blank" class="my-profile">
                             <img src="../static/images/github.svg" alt="github">
                         </a>
-                        <a href="https://www.linkedin.com/in/henry-anyiam" target="_blank">
+                        <a href="https://www.linkedin.com/in/henry-anyiam" target="_blank" class="my-profile">
                             <img src="../static/images/linkedin.svg" alt="linkedin">
                         </a>
                     </div>
                 </div>
             </div>
         </footer>
+        <script type="text/javascript">
+            let anchor = document.querySelector(".display-features")
+            let div = document.querySelector(".features")
+
+            anchor.addEventListener("click", function(){
+                if(div.style.display === "none")
+                    div.style.display = "flex";
+                else
+                    div.style.display = "none"
+            })
+            $(".intro_text").hide()
+            $(".intro_text").slideDown(5000)
+        </script>
     </body>
 </html>

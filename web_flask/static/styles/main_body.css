@@ -52,15 +52,123 @@
     justify-content: space-between;
 }
 
-#Features div {
+#Features .texts {
     margin: 10px;
     border: 1px solid #00a9ff;
     padding: 20px;
     box-shadow: 5px 5px 10px #ccc;
+    display: flex;
+    height: 20vh;
 }
 
-.demo {
+a.reminder {
     text-decoration: underline;
-    margin: 20px;
+    margin: 5px;
+    padding: 5px;
+    display: block;
+}
+
+.features {
+    width: 45%;
+    z-index: 1;
+    height: 30vh;
+    overflow-y: scroll;
+    margin-top: 10px;
+    background-color: #fff;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    position: absolute;
+    top: 5%;
+    right: 25%;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    padding-top: 10%;
+}
+
+.features div {
+    background-color: #fff;
+    border: 1px solid #CCCCCC;
+    width: 200px;
+    margin: 10px;
     padding: 20px;
+    box-shadow: 5px 5px 10px #ccc;
+}
+
+.texts div {
+    width: 30%;
+    align-items: center;
+    justify-content: center;
+}
+
+.fly-solo {
+    width: 30%;
+    margin: 10px;
+    background-image: url("../images/to_do.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.fly-solo1 {
+    width: 30%;
+    margin: 10px;
+    background-image: url("../images/image-to-do.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.chat-image {
+    width: 30%;
+    margin: 10px;
+    background-image: url("../images/communicate.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.groups {
+    width: 30%;
+    margin: 10px;
+    background-image: url("../images/teaming.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.groups1 {
+    width: 30%;
+    margin: 10px;
+    background-image: url("../images/image-team.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.manager {
+    width: 30%;
+    margin: 10px;
+    background-image: url("../images/manager.jpeg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.send-message {
+    width: 30%;
+    margin: 10px;
+    background-image: url("../images/messaging.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.t-manage {
+    width: 30%;
+    margin: 10px;
+    background-image: url("../images/task-manager.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }

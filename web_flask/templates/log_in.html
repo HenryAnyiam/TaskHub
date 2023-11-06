@@ -30,11 +30,15 @@
                   <input type="submit" class="btn" value="Continue">
                 </div>
               </form>
+              {% if error != "None" %}
+                <p class="error">{{ error }}</p>
+              {% endif %}
               <div class="not_login">
                 <a href="/reset">Can't log in?</a>
                 <h2>.</h2>
                 <a class="signup" href="/sign_up">Create an Account</a>
               </div>
+              
         </div>
     </body>
 </html>

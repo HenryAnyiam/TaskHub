@@ -78,3 +78,19 @@ td {
     font-weight: lighter;
     margin-left: 5px;
 }
+
+.buttons {
+    display: flex;
+}
+
+.buttons .submit .btn {
+    width: fit-content;
+    background-color: #007BFF;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px #ccc;
+}

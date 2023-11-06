@@ -27,6 +27,10 @@ header {
     animation: shake 5s ease infinite;
 }
 
+a.my-profile:hover {
+    animation: shake 2s ease infinite;
+}
+
 @keyframes shake {
     35% {
         transform: rotate(-15deg);
@@ -63,12 +67,13 @@ header {
     object-fit: contain;
 }
 
-.header_links a{
-    margin: 0 1rem;
-    font-size: 15px;
-    width: auto;
-    
+.header_links {
+    display: flex;
 }
 #header_name {
     display: inline;
+}
+
+.header_link {
+    margin-right: 12px;
 }

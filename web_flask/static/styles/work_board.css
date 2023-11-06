@@ -138,6 +138,12 @@ tr td {
   height: fit-content;
 }
 
+.messages .message-heading {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+}
+
 .send-btns {
   display: flex;
   margin-left: 0px;
@@ -162,4 +168,38 @@ tr td {
 .send-btns .submit {
   position: absolute;
   right: 0;
+}
+
+.Name {
+  font-size: 10px;
+  font-weight: bolder;
+  margin: 1px;
+  padding: 1px;
+}
+
+.Text {
+  font-family: 'Times New Roman', Times, serif;
+  margin: 1px;
+  padding: 1px;
+}
+
+.sender .Name {
+  color: #007BFF;
+}
+.sender {
+  border-left: 2px solid #007BFF;
+  width: fit-content;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.receiver {
+  border-left: 1px solid #484848;
+  width: fit-content;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.hold-heading {
+  display: flex;
 }

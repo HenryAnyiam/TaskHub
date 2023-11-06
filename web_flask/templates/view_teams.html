@@ -35,6 +35,29 @@
                         </tr>
                     {% endfor %}
                     </table>
+                    <div class="buttons">
+                        <form action="/view_team" method="post">
+                            <input type="hidden" name="user_id" value="{{ id }}">
+                            <input type="hidden" name="team_id" value="{{ team.id }}">
+                            <div class="submit">
+                                <input type="submit" class="btn" value="Leave Team">
+                            </div>
+                        </form>
+                        {% if id == team.created_by %}
+                        <form action="/view_team" method="post">
+                            <input type="hidden" name="team_id" value="{{ team.id }}">
+                            <div class="submit">
+                                <input type="submit" class="btn" value="Delete Team">
+                            </div>
+                        </form>
+                        <form action="/new_team" method="post">
+                            <input type="hidden" name="team_id" value="{{ team.id }}">
+                            <div class="submit">
+                                <input type="submit" class="btn" value="Add member">
+                            </div>
+                        </form>
+                        {% endif %}
+                    </div>
                 </div>
             {% endfor %}
         {% else %}

@@ -61,7 +61,7 @@
                         <td>{{ i.title }}</td>
                         <td>{{ i.team.name }}</td>
                         <td>{{ i.deadline }}</td>
-                        <td>{{ i.progress }}</td>
+                        <td>{{ i.progress }}%</td>
                         <td>
                             <div>
                                 <form action="/work_board" method="post">
@@ -83,10 +83,22 @@
         </div>
         {% if messages != "None" %}
             <div class="messages">
-                <h2>Messages</h2>
+                <div class="hold-heading">
+                    <h2 class="message-heading">Messages</h2>
+                    <img src="../static/images/chat1.svg" alt="chat"/>
+                </div>
                 {% for message in messages%}
-                    <p>{{ message.sender.name }}</p>
-                    <p>{{ message.text }}</p>
+                    {% if message.sender.name == name %}
+                    <div class="sender">
+                        <p class="Name">{{ message.sender.name }}:</p>
+                        <p class="Text">{{ message.text }}</p>
+                    </div>
+                    {%else%}
+                    <div class="receiver">
+                        <p class="Name">{{ message.sender.name }}:</p>
+                        <p class="Text">{{ message.text }}</p>
+                    </div>
+                    {% endif %}  
                 {% endfor %}
                 <div class="send">
                     <form action="/work_board" method="post">
