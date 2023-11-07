@@ -131,8 +131,8 @@ def create_task():
     all = storage.all()
     notifications = current_user.notifications
     title = request.form.get('title')
-    if title and (request.form['csrf_token'] != session['csrf_token']):
-        team = request.form.get('team')
+    if title:
+        team = request.form.get('team', current_user.id)
         if team != user_id:
             team = all[f'Team.{team}'].id
         day = request.form.get('deadline-date')
@@ -178,7 +178,7 @@ def create_task():
     min_date = date.today().isoformat()
     parent_id = request.form.get('parent_id', "None")
     members = "None"
-    if parent_id != "None" and (request.form['csrf_token'] != session['csrf_token']):
+    if parent_id != "None":
         parent = all.get(f'Task.{parent_id}')
         if (parent is not None) and (parent.created_by != parent.team):
             members = all.get(f'Team.{parent.team}', "None")
@@ -273,7 +273,7 @@ def create_teams():
     email = request.form.get('email')
     notifications = current_user.notifications
     team = "None"
-    if (title is not None) and (email is None) and (request.form['csrf_token'] != session['csrf_token']):
+    if (title is not None) and (email is None):
         dict = {'name': title, 'created_by': current_user.id}
         new_team = Team(**dict)
         new_team.save()
@@ -283,7 +283,7 @@ def create_teams():
         storage.save()
         return render_template("new_team.html", name=current_user.name, file='new_team', team=new_team)
     done =request.form.get('done')
-    if (email is not None) and (done is None) and (request.form['csrf_token'] != session['csrf_token']):
+    if (email is not None) and (done is None):
         team = request.form.get('team_id')
         if team:
             all = storage.all()
@@ -295,14 +295,17 @@ def create_teams():
                         invited = True
                         invite = all[i].id
                         members = team.members
-                        new = eval(members)
-                        new.append(invite)
-                        setattr(team, 'members', str(new))
-                        storage.save()
-                        dic = {'title': f"You have been added to a new team 'Team {team.name}'",
-                               'type': "New Team", "check" : "False", "user_id": invite}
-                        notification = Notification(**dic)
-                        notification.save()
+                        new = eval(members) if isinstance(members, str) else members
+                        if invite not in new:
+                            new.append(invite)
+                            setattr(team, 'members', str(new))
+                            storage.save()
+                            dic = {'title': f"You have been added to a new team 'Team {team.name}'",
+                                   'type': "New Team", "check" : "False", "user_id": invite}
+                            notification = Notification(**dic)
+                            notification.save()
+                        else:
+                            error = "User already in team"
                 if invited is False:
                     error = "User does not exist"
     return render_template("new_team.html", name=current_user.name, file='new_team',
@@ -319,7 +322,7 @@ def work_board():
     messages = 'None'
     new_message = request.form.get('message')
     notifications = current_user.notifications
-    if new_message and (request.form['csrf_token'] != session['csrf_token']):
+    if new_message:
         taskId = request.form.get('main_task')
         team = request.form.get('team')
         dic = {'text': new_message,
@@ -328,7 +331,7 @@ def work_board():
         new_message = Message(**dic)
         new_message.save()
     all = storage.all()
-    if new_message and (request.form['csrf_token'] != session['csrf_token']):
+    if new_message:
         team_detail = all.get(f'Team.{team}')
         memb = team_detail.members
         memb = eval(memb) if isinstance(memb, str) else memb
@@ -338,7 +341,7 @@ def work_board():
             new_notification = Notification(**dic)
             new_notification.save()
     p_task = request.form.get('task_id')
-    if p_task and (request.form['csrf_token'] != session['csrf_token']):
+    if p_task:
         taskId = p_task
         p_task = all.get(f'Task.{p_task}')
         if p_task:
@@ -354,7 +357,7 @@ def work_board():
                     child_tasks[i].progress = 100
             storage.save()
     c_task = request.form.get('c_task_id')
-    if c_task and (request.form['csrf_token'] != session['csrf_token']):
+    if c_task:
         c_task = all.get(f'Task.{c_task}')
         if c_task:
             c_task.progress = 100
