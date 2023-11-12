@@ -207,6 +207,7 @@ def view_tasks():
                     
                     if user_id in team.members:
                         tasks.append(all[i])
+    tasks.sort(key=(lambda x: x.updated_at), reverse=True)
     length = len(tasks)
     for i in range(length):
         team_id = tasks[i].team
