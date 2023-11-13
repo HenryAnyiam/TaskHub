@@ -81,3 +81,11 @@ class DBStorage:
     def clear(self):
         """drop all tables"""
         Base.metadata.drop_all(self.__engine)
+
+    def search(self, cls, filter, value):
+        """query database with filter"""
+        classes = (User, Message, Notification, Task, Team)
+        result = []
+        if cls in classes:
+            result = self.__session.query(cls).filter(filter.like(f'%{value}%')).all()
+        return result

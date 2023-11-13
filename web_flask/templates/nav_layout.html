@@ -12,6 +12,9 @@
         <link rel="stylesheet" href="../static/styles/nav.css">
         <link rel="stylesheet" href="../static/styles/{{ file }}.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        {% if file == calendar %}
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.2/main.css">
+        {% endif %}
     </head>
     <body>
         <header>
@@ -88,7 +91,7 @@
                             <p>View Teams</p>
                         </div>
                     </a>
-                    <a>
+                    <a href="/calendar">
                         <div class="calendar">
                             <img src="../static/images/calendar.svg" alt="calendar">
                             <p>Calendar</p>
