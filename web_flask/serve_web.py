@@ -41,13 +41,13 @@ def get_tasks(id):
 
     for i in all_task:
         if all_task[i].get('created_by') == id:
-            tasks.append(all[i])
+            tasks.append(all_task[i])
         else:
             team = all_task[i].get('team')
             team = all_team.get(f'Team.{team}')
             if team != None:
                 if id in team.members:
-                    tasks.append(all[i])
+                    tasks.append(all_task[i])
 
     return tasks
 
@@ -57,6 +57,7 @@ def load_user(id):
     today = datetime.today()
     day = timedelta(seconds=86400)
     tasks = get_tasks(id)
+    user = storage.search(User, User.id, id)
 
     for i in tasks:
         """create notifications for tasks with close deadline"""
@@ -69,7 +70,7 @@ def load_user(id):
                 new_notification = Notification(**dic)
                 new_notification.save()
 
-    return all.get(f"User.{id}")
+    return user[0]
 
 @login.unauthorized_handler
 def unauthorized():
@@ -286,11 +287,15 @@ def create_teams():
         setattr(new_team, 'members', str(members))
         storage.save()
         return render_template("new_team.html", name=current_user.name, file='new_team', team=new_team)
+    team = request.form.get('team_id')
+    all_team = storage.all('Team')
+    if team and not email:
+        team = all_team.get(f'Team.{team}')
+        return render_template("new_team.html", name=current_user.name, file='new_team', team=team)
     done =request.form.get('done')
     if (email is not None) and (done is None):
         team = request.form.get('team_id')
         if team:
-            all_team = storage.all('Team')
             team = all_team.get(f'Team.{team}')
             if team:
                 invited = False
