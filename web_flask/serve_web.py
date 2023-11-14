@@ -287,9 +287,9 @@ def create_teams():
         setattr(new_team, 'members', str(members))
         storage.save()
         return render_template("new_team.html", name=current_user.name, file='new_team', team=new_team)
-    team = request.form.get('team_id')
+    team = request.form.get('team_id', "None")
     all_team = storage.all('Team')
-    if team and not email:
+    if (team != "None") and (email is None):
         team = all_team.get(f'Team.{team}')
         return render_template("new_team.html", name=current_user.name, file='new_team', team=team)
     done =request.form.get('done')
