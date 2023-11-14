@@ -15,7 +15,11 @@ It is a full stack web application built using HTML/CSS for its front end includ
 Python was used in creating models as well as SQLAlchemy to manage the database
 THe flask framework was used as its web framework
 
-So far task hub is yet to be deployed but the major parts of its development is done
+TaskHub has been temporarily deployed
+You could access it with the following address
+```
+http://100.24.72.145:5000/
+```
 This is a first time portfolio project, hence updates to it are bound to come with my SE growth
 
 # TaskHub - The Console
